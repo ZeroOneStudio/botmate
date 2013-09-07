@@ -6,7 +6,7 @@ Simple nodejs server to serve static snapshots of single-page apps to crawlers.
 
   - [Node.js](http://nodejs.org) 0.10.18
   - [Phantomjs](http://phantomjs.org) 1.9.1
-  - [Foverer](https://npmjs.org/package/forever) npm module
+  - [Forever](https://npmjs.org/package/forever) npm module
 
 ## Usage
 
