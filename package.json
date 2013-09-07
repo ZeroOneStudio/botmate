@@ -1,0 +1,12 @@
+{
+  "name": "botmate",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-jslint": "~1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZeroOneStudio/botmate.git"
+  }
+}

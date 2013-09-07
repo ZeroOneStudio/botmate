@@ -1,13 +1,14 @@
+/*jslint node: true*/
+"use strict";
 var spawn = require('child_process').spawn,
     http = require('http'),
     url = require('url');
 
 http.createServer(function (req, res) {
-    var child, query, targetUrl, 
-        staticContent = [];
-    query = url.parse(req.url,true).query;
-    if (typeof query == 'object' && typeof query['host'] !== 'undefined' && typeof query['fragment'] !== 'undefined') {
-        targetUrl = "http://" + query['host'] + "/#!" + query['fragment'];
+    var child, query, targetUrl, staticContent = [];
+    query = url.parse(req.url, true).query;
+    if (typeof query === 'object' && query.host !== undefined && query.fragment !== undefined) {
+        targetUrl = "http://" + query.host + "/#!" + query.fragment;
         console.log('Processing url:', targetUrl);
         child = spawn("phantomjs", ['page-content.js', targetUrl]);
         child.stdout.setEncoding('utf8');
