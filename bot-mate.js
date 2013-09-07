@@ -4,13 +4,13 @@ var phantom = require('phantom'),
     http = require('http'),
     url = require('url');
 
-http.createServer(function (req, res) {
-    var query, targetUrl;
-    query = url.parse(req.url, true).query;
-    if (typeof query === 'object' && query.host !== undefined && query.fragment !== undefined) {
-        targetUrl = "http://" + query.host + "/#!" + query.fragment;
-        console.log('Processing url:', targetUrl);
-        phantom.create(function (ph) {
+phantom.create(function (ph) {
+    http.createServer(function (req, res) {
+        var query, targetUrl;
+        query = url.parse(req.url, true).query;
+        if (typeof query === 'object' && query.host !== undefined && query.fragment !== undefined) {
+            targetUrl = "http://" + query.host + "/#!" + query.fragment;
+            console.log('Processing url:', targetUrl);
             ph.createPage(function (page) {
                 page.set('onLoadFinished', function (status) {
                     if (status !== 'success') {
@@ -24,11 +24,11 @@ http.createServer(function (req, res) {
                             console.log('Served static version of:', targetUrl);
                         });
                     }
-                    ph.exit();
                 });
                 page.open(targetUrl);
             });
-        });
-    }
-}).listen(3001, '127.0.0.1');
+        }
+    }).listen(3001, '127.0.0.1');
+});
+
 console.log("Proxy listening at http://127.0.0.1:3001");
