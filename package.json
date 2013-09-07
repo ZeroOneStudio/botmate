@@ -8,5 +8,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ZeroOneStudio/botmate.git"
+  },
+  "dependencies": {
+    "phantom": "~0.5.2"
   }
 }

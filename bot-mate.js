@@ -1,30 +1,33 @@
 /*jslint node: true*/
 "use strict";
-var spawn = require('child_process').spawn,
+var phantom = require('phantom'),
     http = require('http'),
     url = require('url');
 
 http.createServer(function (req, res) {
-    var child, query, targetUrl, staticContent = [];
+    var query, targetUrl;
     query = url.parse(req.url, true).query;
     if (typeof query === 'object' && query.host !== undefined && query.fragment !== undefined) {
         targetUrl = "http://" + query.host + "/#!" + query.fragment;
         console.log('Processing url:', targetUrl);
-        child = spawn("phantomjs", ['page-content.js', targetUrl]);
-        child.stdout.setEncoding('utf8');
-        child.stdout.on('data', function (data) {
-            staticContent.push(data);
-        });
-        child.on('close', function (code) {
-            if (code === 0) {
-                res.writeHead(200, {'Content-Type': 'text/html'});
-                res.end(staticContent.join(), 'utf-8');
-                console.log('Served static version of:', targetUrl);
-            } else {
-                res.writeHead(500, {'Content-Type': 'text/html'});
-                res.end("Botmate internal error\n", 'utf-8');
-                console.log('Error occured with url:', targetUrl);
-            }
+        phantom.create(function (ph) {
+            ph.createPage(function (page) {
+                page.set('onLoadFinished', function (status) {
+                    if (status !== 'success') {
+                        res.writeHead(500, {'Content-Type': 'text/html'});
+                        res.end("Couldn't open desired page\n", 'utf-8');
+                        console.log('Error occured with url:', targetUrl);
+                    } else {
+                        page.get('content', function (content) {
+                            res.writeHead(200, {'Content-Type': 'text/html'});
+                            res.end(content, 'utf-8');
+                            console.log('Served static version of:', targetUrl);
+                        });
+                    }
+                    ph.exit();
+                });
+                page.open(targetUrl);
+            });
         });
     }
 }).listen(3001, '127.0.0.1');
