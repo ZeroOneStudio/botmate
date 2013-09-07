@@ -22,7 +22,7 @@ http.createServer(function (req, res) {
                 console.log('Served static version of:', targetUrl);
             } else {
                 res.writeHead(500, {'Content-Type': 'text/html'});
-                res.end("Botmate internat error\n", 'utf-8');
+                res.end("Botmate internal error\n", 'utf-8');
                 console.log('Error occured with url:', targetUrl);
             }
         });
