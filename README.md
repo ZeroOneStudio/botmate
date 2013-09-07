@@ -1,4 +1,4 @@
-# Botmate
+# Botmate (TODO: Handle multiple requests)
 
 Simple nodejs server to serve static snapshots of single-page apps to crawlers.
 
@@ -39,7 +39,6 @@ Restart nginx and you are ready to serve static snapshots to crawlers. Yay!
 ## TODO
 
   - Cache snapshots
-  - Better app structure and inter-process communication
   - Tests
 
 ## LICENSE - "MIT License"
