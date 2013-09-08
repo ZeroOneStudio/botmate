@@ -14,7 +14,7 @@ phantom.create(function (ph) {
             ph.createPage(function (page) {
                 page.set('onLoadFinished', function (status) {
                     if (status !== 'success') {
-                        res.writeHead(500, {'Content-Type': 'text/html'});
+                        res.writeHead(500, {'Content-Type': 'text/plain'});
                         res.end("Couldn't open desired page\n", 'utf-8');
                         console.log('Error occured with url:', targetUrl);
                     } else {
@@ -27,6 +27,10 @@ phantom.create(function (ph) {
                 });
                 page.open(targetUrl);
             });
+        } else {
+            res.writeHead(400, {'Content-Type': 'text/plain'});
+            res.end("Something is wrong with request arguments. Please read documentation of Botmate.\n", 'utf-8');
+            console.log('Wrong request arguments');
         }
     }).listen(3001, '127.0.0.1');
 });
