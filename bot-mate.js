@@ -17,11 +17,13 @@ phantom.create(function (ph) {
                         res.writeHead(500, {'Content-Type': 'text/plain'});
                         res.end("Couldn't open desired page\n", 'utf-8');
                         console.log('Error occured with url:', targetUrl);
+                        page.close();
                     } else {
                         page.get('content', function (content) {
                             res.writeHead(200, {'Content-Type': 'text/html'});
                             res.end(content, 'utf-8');
                             console.log('Served static version of:', targetUrl);
+                            page.close();
                         });
                     }
                 });

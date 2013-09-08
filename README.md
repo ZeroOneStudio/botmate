@@ -39,7 +39,7 @@ Restart nginx and you are ready to serve static snapshots to crawlers. Yay!
 ## TODO
 
   - Cache snapshots
-  - Improve readability
+  - Get rid of callback hell, DRY
   - Tests
 
 ## LICENSE - "MIT License"
