@@ -10,6 +10,8 @@
     "url": "https://github.com/ZeroOneStudio/botmate.git"
   },
   "dependencies": {
-    "phantom": "~0.5.2"
+    "phantom": "~0.5.2",
+    "moment": "~2.1.0",
+    "colors": "~0.6.2"
   }
 }
