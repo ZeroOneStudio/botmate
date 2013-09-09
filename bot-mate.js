@@ -8,24 +8,26 @@ var phantom = require('phantom'),
 
 var Logger = {
     logTimestamp: function () {
-        var timestamp = moment().format('D MMM YYYY, H:m');
+        var timestamp = moment().format('D MMM YYYY, H:mm');
         return timestamp.blue;
     },
-    perform: function (action, targetUrl, req, reqMoment) {
+    compose: function (action, targetUrl, req, reqMoment) {
         switch (action) {
         case 'processing':
-            console.log(this.logTimestamp(), 'Processing url:'.yellow, targetUrl, 'for ' + req.headers['user-agent'].grey + ' (' + req.headers.host + ')');
-            break;
+            return ['Processing url'.yellow, targetUrl, 'for', req.headers['user-agent'].grey, '(' + req.headers.host + ')'];
         case 'request-error':
-            console.log(this.logTimestamp(), 'Error occured with url:'.red, targetUrl, '(' + req.headers.host + ')');
-            break;
+            return ['Error occured with url'.red, targetUrl, '(' + req.headers.host + ')'];
         case 'success':
-            console.log(this.logTimestamp(), 'Served static version of:'.green, targetUrl, '(' + req.headers.host + ')', 'in', moment().diff(reqMoment, 'milliseconds') + 'ms');
-            break;
+            return ['Served static version of'.green, targetUrl, '(' + req.headers.host + ')', 'in', moment().diff(reqMoment, 'milliseconds') + 'ms'];
         case 'wrong-args':
-            console.log(this.logTimestamp(), 'Wrong request arguments'.red, 'from ' + req.headers['user-agent'].grey + ' (' + req.headers.host + ')');
-            break;
+            return ['Wrong request arguments'.red, 'from', req.headers['user-agent'].grey, '(' + req.headers.host + ')'];
         }
+    },
+    perform: function () {
+        var record = [];
+        record.push(this.logTimestamp());
+        record = record.concat(this.compose.apply(this, arguments));
+        console.log.apply(console, record);
     }
 };
 
