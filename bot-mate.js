@@ -42,7 +42,7 @@ phantom.create(function (ph) {
             res.end("Something is wrong with request arguments. Please read documentation of Botmate.\n", 'utf-8');
             return Logger.perform('wrong-args', undefined, req);
         }
-        targetUrl = "http://" + query.host + "/#!" + query.fragment;
+        targetUrl = "http://" + query.host + "#!" + query.fragment;
         Logger.perform('processing', targetUrl, req);
         ph.createPage(function (page) {
             page.set('onLoadFinished', function (status) {

@@ -27,7 +27,7 @@ Arter you need to configure your web server to catch requests with `_escaped_fra
       ...
 
       if ( $arg__escaped_fragment_ ) {
-        proxy_pass http://127.0.0.1:3001/?host=$host&fragment=$arg__escaped_fragment_;
+        proxy_pass http://127.0.0.1:3001/?host=$host$uri&fragment=$arg__escaped_fragment_;
         break;
       }
 
