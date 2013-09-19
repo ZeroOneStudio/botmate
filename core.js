@@ -35,7 +35,7 @@ var Logger = {
 phantom.create(function (ph) {
     http.createServer(function (req, res) {
         var reqMoment = moment(),
-        query query   = url.parse(req.url, true).query,
+        query   = url.parse(req.url, true).query,
         targetUrl;
         if (query.host === undefined && query.fragment === undefined) {
             res.writeHead(400, {'Content-Type': 'text/plain'});
