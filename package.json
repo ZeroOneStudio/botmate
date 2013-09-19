@@ -1,6 +1,7 @@
 {
   "name": "botmate",
   "version": "0.0.1",
+  "homepage": "https://github.com/ZeroOneStudio/botmate",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-jslint": "~1.0.0"
@@ -12,6 +13,11 @@
   "dependencies": {
     "phantom": "~0.5.2",
     "moment": "~2.1.0",
-    "colors": "~0.6.2"
+    "colors": "~0.6.2",
+    "forever": "0.10.8"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "botmate": "botmate.js"
   }
 }
