@@ -1,10 +1,10 @@
 /*jslint node: true*/
 "use strict";
 var phantom = require('phantom'),
-http        = require('http'),
-url         = require('url'),
-colors      = require('colors'),
-moment      = require('moment');
+    http = require('http'),
+    url = require('url'),
+    colors = require('colors'),
+    moment = require('moment');
 
 var Logger = {
     logTimestamp: function () {
@@ -35,8 +35,8 @@ var Logger = {
 phantom.create(function (ph) {
     http.createServer(function (req, res) {
         var reqMoment = moment(),
-        query   = url.parse(req.url, true).query,
-        targetUrl;
+            query = url.parse(req.url, true).query,
+            targetUrl;
         if (query.host === undefined && query.fragment === undefined) {
             res.writeHead(400, {'Content-Type': 'text/plain'});
             res.end("Something is wrong with request arguments. Please read documentation of Botmate.\n", 'utf-8');

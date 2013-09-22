@@ -1,9 +1,9 @@
-#! /usr/local/bin/node
-
+/*jslint node: true*/
+"use strict";
 var forever = require('forever'),
-child;
+    child;
 
-child = forever.start('core.js', {
+child = forever.startDaemon('core.js', {
     max: 3
 });
 
