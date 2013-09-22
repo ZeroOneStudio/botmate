@@ -8,15 +8,14 @@ This guys are required to be present in your `PATH`:
 
   - [Node.js](http://nodejs.org) 0.10.18
   - [Phantomjs](http://phantomjs.org) 1.9.1
-  - [Forever](https://npmjs.org/package/forever) npm module
 
 ## Usage
 
 First, you need to run botmate server as a daemon. It starts on `http://127.0.0.1:3001` by default:
 
-    $ git clone https://github.com/ZeroOneStudio/botmate && cd botmate
+    $ git clone -b cli https://github.com/ZeroOneStudio/botmate && cd botmate
     $ npm install
-    $ forever start bot-mate.js
+    $ node botmate
     
 Arter you need to configure your web server to catch requests with `_escaped_fragment_` and proxy them to botmate.
 
