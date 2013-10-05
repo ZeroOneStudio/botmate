@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jslint: {
       all: {
-        src: ['bot-mate.js', 'page-content.js'],
+        src: ['botmate.js', 'lib/logger.js'],
         directives: {
           nomen: true
         }

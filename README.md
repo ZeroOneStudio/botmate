@@ -16,7 +16,7 @@ First, you need to run botmate server as a daemon. It starts on `http://127.0.0.
 
     $ git clone https://github.com/ZeroOneStudio/botmate && cd botmate
     $ npm install
-    $ forever start bot-mate.js
+    $ forever start botmate.js
     
 Arter you need to configure your web server to catch requests with `_escaped_fragment_` and proxy them to botmate.
 
