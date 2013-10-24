@@ -1,5 +1,7 @@
 # Botmate
 
+[![Code Climate](https://codeclimate.com/github/ZeroOneStudio/botmate.png)](https://codeclimate.com/github/ZeroOneStudio/botmate)
+
 Simple nodejs server to serve static snapshots of single-page apps to crawlers.
 
 #### Requirements
