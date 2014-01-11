@@ -1,20 +1,17 @@
 module.exports = function(grunt) {
-
-  // Project configuration.
+  // Project configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    jslint: {
-      all: {
-        src: ['botmate.js', 'lib/logger.js'],
-        directives: {
-          nomen: true
-        }
-      }
+    jshint: {
+      options: {
+        node: true
+      },
+      all: ['Gruntfile.js', 'lib/**/*.js']
     }
   });
 
-  grunt.loadNpmTasks('grunt-jslint');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  // Default task(s).
-  grunt.registerTask('default', ['jslint']);
+  // Default tasks
+  grunt.registerTask('default', ['jshint']);
 };

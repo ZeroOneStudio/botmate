@@ -1,4 +1,3 @@
-/*jslint node: true*/
 "use strict";
 var phantom = require('phantom'),
     http = require('http'),
